@@ -11,6 +11,8 @@ import { SelectedRequiredValidatorDirective } from './shared/select-required-val
 import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
 import { EmployeeService } from './employees/employee.service';
 
+import { DisplayEmployeeComponent } from './employees/display-employee.component';
+
 const appRoutes: Routes = [
   {path: 'list', component: ListEmployeesComponent},
   {path: 'create', component: CreateEmployeeComponent},
@@ -24,6 +26,7 @@ const appRoutes: Routes = [
     CreateEmployeeComponent,
     SelectedRequiredValidatorDirective,
     ConfirmEqualValidatorDirective,
+    DisplayEmployeeComponent,
   ],
   imports: [
     BrowserModule,
