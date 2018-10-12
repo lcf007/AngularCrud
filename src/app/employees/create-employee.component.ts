@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Department } from '../models/department.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-employee.component.css']
 })
 export class CreateEmployeeComponent implements OnInit {
-  @ViewChild('employeeForm') public createEmployeeForm: NgForm;
   employee: Employee = {
     id: null,
     name: null,
@@ -47,9 +46,8 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   saveEmployee(): void {
-    const newEmployee: Employee = Object.assign({}, this.employee);
-    this._employeeService.save(newEmployee);
-    this.createEmployeeForm.reset();
+    console.log(this.employee);
+    this._employeeService.save(this.employee);
     this._router.navigate(['list']);
   }
 
