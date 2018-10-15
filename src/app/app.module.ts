@@ -14,9 +14,11 @@ import { EmployeeService } from './employees/employee.service';
 import { DisplayEmployeeComponent } from './employees/display-employee.component';
 import { CreateEmployeeCanDeactiveGuardService } from './employees/create-employee-can-deactive-guard.service';
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
+import { EmployeeFilterPipe } from './employees/employee-filter.pipe';
+import { EmployeeListResolverService } from './employees/employee-list-resolver.service';
 
 const appRoutes: Routes = [
-  {path: 'list', component: ListEmployeesComponent},
+  {path: 'list', component: ListEmployeesComponent, resolve: {employeeReslover: EmployeeListResolverService} ,
   {path: 'employees/:id', component: EmployeeDetailsComponent},
   {path: 'create',
     component: CreateEmployeeComponent,
@@ -33,6 +35,7 @@ const appRoutes: Routes = [
     ConfirmEqualValidatorDirective,
     DisplayEmployeeComponent,
     EmployeeDetailsComponent,
+    EmployeeFilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     EmployeeService,
-    CreateEmployeeCanDeactiveGuardService
+    CreateEmployeeCanDeactiveGuardService,
+    EmployeeListResolverService,
   ],
   bootstrap: [AppComponent]
 })
