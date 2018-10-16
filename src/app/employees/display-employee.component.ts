@@ -15,7 +15,6 @@ export class DisplayEmployeeComponent implements OnInit {
   @Input() searchTerm: string;
   @Output() notifyDelete: EventEmitter<number> = new EventEmitter<number>();
   confirmDelete = false;
-  isHidden = true;
 
   constructor(
     private _route: ActivatedRoute,
