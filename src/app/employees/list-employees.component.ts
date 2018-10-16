@@ -22,7 +22,7 @@ export class ListEmployeesComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _route: ActivatedRoute,
+    private _route: ActivatedRoute
   ) {
     this.employees = this._route.snapshot.data['employeeReslover'];
     this._route.queryParamMap.subscribe((params) => {
@@ -31,8 +31,8 @@ export class ListEmployeesComponent implements OnInit {
       } else {
         this.filteredEmployees = this.employees;
       }
-    }
-}
+    });
+  }
 
   ngOnInit() {
   }
