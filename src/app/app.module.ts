@@ -20,9 +20,8 @@ import { PageNotFoundComponent } from './page-not-found.component';
 import { EmployeeDetailsGuardService } from './employees/employee-details-guard.services';
 
 const appRoutes: Routes = [
-  { path: 'list', component: ListEmployeesComponent, resolve: { employeeReslover: EmployeeListResolverService },
-  { path: 'employees/:id', component: EmployeeDetailsComponent,
-    canActivate: [EmployeeDetailsGuardService] },
+  { path: 'list', component: ListEmployeesComponent, resolve: { employeeReslover: EmployeeListResolverService } },
+  { path: 'employees/:id', component: EmployeeDetailsComponent, canActivate: [EmployeeDetailsGuardService] },
   {
     path: 'create',
     component: CreateEmployeeComponent,
@@ -30,6 +29,7 @@ const appRoutes: Routes = [
   },
   { path: '', redirectTo: '/list', pathMatch: 'full' },
   { path: 'notfound', component: PageNotFoundComponent},
+  { path: '**', component: PageNotFoundComponent},
 ];
 
 @NgModule({

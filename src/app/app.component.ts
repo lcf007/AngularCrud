@@ -7,19 +7,24 @@ import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationErr
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showLoadingIndicator: boolean = true;
+  showLoadingIndicator = true;
   constructor(private _router: Router) {
-    this._router.events.subscribe((routerEvent: Event) => {
-      if (routerEvent instanceof NavigationStart) {
+    // Subscribe to the router events observable
+    this._router.events.subscribe((value) => {
+
+      // On NavigationStart, set showLoadingIndicator to ture
+      if (value instanceof NavigationStart) {
         this.showLoadingIndicator = true;
       }
-      if (routerEvent instanceof NavigationEnd ||
-        routerEvent instanceof NavigationCancel ||
-        routerEvent instanceof NavigationError
-      ) {
+
+      // On NavigationEnd or NavigationError or NavigationCancel
+      // set showLoadingIndicator to false
+      if (value instanceof NavigationEnd ||
+        value instanceof NavigationError ||
+        value instanceof NavigationCancel) {
         this.showLoadingIndicator = false;
       }
-    }
-    )
+
+    });
   }
 }
