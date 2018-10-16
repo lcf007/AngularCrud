@@ -16,14 +16,20 @@ import { CreateEmployeeCanDeactiveGuardService } from './employees/create-employ
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
 import { EmployeeFilterPipe } from './employees/employee-filter.pipe';
 import { EmployeeListResolverService } from './employees/employee-list-resolver.service';
+import { PageNotFoundComponent } from './page-not-found.component';
+import { EmployeeDetailsGuardService } from './employees/employee-details-guard.services';
 
 const appRoutes: Routes = [
-  {path: 'list', component: ListEmployeesComponent, resolve: {employeeReslover: EmployeeListResolverService} ,
-  {path: 'employees/:id', component: EmployeeDetailsComponent},
-  {path: 'create',
+  { path: 'list', component: ListEmployeesComponent, resolve: { employeeReslover: EmployeeListResolverService },
+  { path: 'employees/:id', component: EmployeeDetailsComponent,
+    canActivate: [EmployeeDetailsGuardService] },
+  {
+    path: 'create',
     component: CreateEmployeeComponent,
-    canDeactivate:[CreateEmployeeCanDeactiveGuardService]},
-  {path: '', redirectTo: '/list', pathMatch: 'full'},
+    canDeactivate: [CreateEmployeeCanDeactiveGuardService]
+  },
+  { path: '', redirectTo: '/list', pathMatch: 'full' },
+  { path: 'notfound', component: PageNotFoundComponent},
 ];
 
 @NgModule({
@@ -36,6 +42,7 @@ const appRoutes: Routes = [
     DisplayEmployeeComponent,
     EmployeeDetailsComponent,
     EmployeeFilterPipe,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +54,7 @@ const appRoutes: Routes = [
     EmployeeService,
     CreateEmployeeCanDeactiveGuardService,
     EmployeeListResolverService,
+    EmployeeDetailsGuardService,
   ],
   bootstrap: [AppComponent]
 })
