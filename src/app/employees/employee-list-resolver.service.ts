@@ -5,18 +5,16 @@ import { EmployeeService } from "./employee.service";
 import { Observable } from "rxjs";
 import { map, catchError } from "rxjs/operators";
 import { ResolvedEmployeeList } from "./resolved-employeelist.model";
-import { of } from 'rxjs/observable/of';
+import { of } from 'rxjs';
 
 @Injectable()
 export class EmployeeListResolverService implements Resolve<ResolvedEmployeeList>{
   constructor(private _employeeService: EmployeeService) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ResolvedEmployeeList> {
-    return this._employeeService.getEmployees().pipe(map((employeeList) =>
-      new ResolvedEmployeeList(employeeList),
-      catchError(
-        (err: any) => of(new ResolvedEmployeeList(null, err))
-      )
+    return this._employeeService.getEmployees().pipe(
+      map((employeeList) => new ResolvedEmployeeList(employeeList),
+      catchError( (err: any) => of(new ResolvedEmployeeList(null, err)) )
     ));
   }
 }
